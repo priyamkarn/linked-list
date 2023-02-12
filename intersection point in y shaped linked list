@@ -26,3 +26,18 @@ int getLength(ListNode *head) {
 One of the most commonly used approaches is to first determine the length of both linked lists and then advance the pointer of the longer linked list
 so that both linked lists are the same length.
 Then, you can traverse both linked lists in parallel until you find the node at which they intersect.
+2nd approach
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    unordered_set<ListNode*> nodes;
+    while (headA) {
+        nodes.insert(headA);
+        headA = headA->next;
+    }
+    while (headB) {
+        if (nodes.count(headB)) {
+            return headB;
+        }
+        headB = headB->next;
+    }
+    return nullptr;
+}
