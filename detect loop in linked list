@@ -1,0 +1,14 @@
+unordered_map<Node*,int>ump;
+        Node *ptr=head;
+        Node *prev;
+        while(ptr)
+        {
+            if(ump.find(ptr)!=ump.end())
+            {
+                return true;
+            }
+            ump[ptr]=ptr->data;
+            prev=ptr;
+            ptr=ptr->next;
+        }
+        return false;
