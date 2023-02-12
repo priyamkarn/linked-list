@@ -1,0 +1,40 @@
+ int count=0;
+       Node *curr=head;
+       Node *temp=head;
+       while(temp)
+       {
+           count+=1;
+           temp=temp->next;
+       }
+       int j=count-n;
+       if(j<0)
+       {
+           return -1;
+       }
+       for(int i=0;i<j &&curr;i++)
+       {
+           curr=curr->next;
+       }
+       return curr->data;
+}
+approach 2 (given tle)
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       unordered_map<int,int>ump;
+       int count=0;
+       Node *curr=head;
+       while(curr)
+       {
+           count+=1;
+            ump[count]=curr->data;
+           curr=curr->next;
+       }
+       int p=count-n;
+       if(p<0)
+       {
+           return -1;
+       }
+       int ans=ump[count-n+1];
+       return ans;
+}
