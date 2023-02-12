@@ -1,0 +1,29 @@
+bool isPalindrome(Node *head)
+    {
+        //Your code here
+        vector<int>v;
+        Node *curr=head;
+        int c=0;
+        while(curr)
+        {
+            v.push_back(curr->data);
+            c++;
+            curr=curr->next;
+        }
+       
+        int i=0;
+        int j=c-1;
+     //   cout<<j<<endl;
+        while(i<j)
+        {
+            //cout<<v[i]<<" "<<v[j]<<endl;
+            if(v[i]!=v[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        
+        return true;
+    }
