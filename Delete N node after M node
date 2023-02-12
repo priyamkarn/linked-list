@@ -1,0 +1,24 @@
+ Node *temp=head;
+        Node *prev;
+        while(temp)
+        {
+            for(int i=1;i<=M &&temp;i++)
+            {
+                prev=temp;
+                temp=temp->next;
+            }
+            if(!temp)
+            {
+                return;
+            }
+            for(int i=1;i<=N &&temp;i++)
+            {
+             prev->next=temp->next;
+             Node *del=temp;
+             temp=temp->next;
+             delete del;
+            }
+            
+        }
+    }
+    //In linked list check for NULL case everytime
