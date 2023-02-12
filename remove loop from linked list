@@ -1,0 +1,18 @@
+unordered_map<Node*,int>ump;
+        Node *ptr=head;
+        Node *prev;
+        while(ptr)
+        {
+            if(ump.find(ptr)!=ump.end())
+            {
+                prev->next=NULL;
+                break;
+            }
+            ump[ptr]=ptr->data;
+            prev=ptr;
+            ptr=ptr->next;
+        }
+    }
+    The reason we set prev->next = NULL instead of curr->next = NULL is that we want to break the link between the previous node and the current node,
+    which is the node that is repeated and causing the loop.
+    By setting prev->next = NULL, we are effectively breaking the link and removing the loop.
