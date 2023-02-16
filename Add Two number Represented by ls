@@ -1,0 +1,41 @@
+struct Node *reverselist(struct Node *head)
+    {
+        if(head==NULL || head->next==NULL)
+        {
+            return head;
+        }
+        struct Node *chotahead=reverselist(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return chotahead;
+    }
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        // code here
+        struct Node *head1=reverselist(first);
+        struct Node *head2=reverselist(second);
+        struct Node *temp1=head1;
+        struct Node *temp2=head2;
+        struct Node *dummy=new Node(0);
+        int c=0;
+        struct Node *ptr=dummy;
+        while(temp1 || temp2 || c)
+        {
+            int sum=0;
+           if(temp1){
+              sum+=temp1->data;
+              temp1=temp1->next;
+          }
+          if(temp2){
+              sum+=temp2->data;
+              temp2=temp2->next;
+          }
+            sum+=c;
+            c=sum/10;
+            int digit=sum%10;
+            struct Node *node =new Node(digit);
+            ptr->next=node;
+            ptr=ptr->next;
+        }
+       return reverselist(dummy->next);
+    }
