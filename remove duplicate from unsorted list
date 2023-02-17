@@ -1,58 +1,45 @@
-#include <iostream>
-#include <unordered_set>
+Node* removeDuplicates(Node *head)
 
-using namespace std;
+{
 
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
+   unordered_map<int,bool>visited;
 
-ListNode* removeDuplicates(ListNode* head) {
-    if (!head) {
-        return NULL;
-    }
+   Node* temp=head;
 
-    unordered_set<int> seen;
-    seen.insert(head->val);
-    ListNode* prev = head;
-    ListNode* curr = head->next;
+   Node* prev=head;
 
-    while (curr) {
-        if (seen.find(curr->val) != seen.end()) {
-            // Duplicate node found
-            prev->next = curr->next;
-            delete curr;
-            curr = prev->next;
-        } else {
-            // New node found
-            seen.insert(curr->val);
-            prev = curr;
-            curr = curr->next;
+   while(temp!=NULL)
+
+   {
+
+        if(visited[temp->data]==true)
+
+        {
+
+            Node* a=temp;
+
+            prev->next=temp->next;
+
+            temp=temp->next;
+
+            a->next=NULL;
+
         }
-    }
+
+        else
+
+        {
+
+            prev=temp;
+
+            visited[temp->data]=true;
+
+            temp=temp->next;
+
+        }
+
+   }
 
     return head;
-}
 
-int main() {
-    ListNode* head = new ListNode(1);
-    head->next = new ListNode(2);
-    head->next->next = new ListNode(1);
-    head->next->next->next = new ListNode(3);
-    head->next->next->next->next = new ListNode(2);
-
-    ListNode* newHead = removeDuplicates(head);
-
-    // Print the linked list
-    ListNode* curr = newHead;
-    while (curr) {
-        cout << curr->val << " ";
-        curr = curr->next;
-    }
-    cout << endl;
-
-    return 0;
 }
