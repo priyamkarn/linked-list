@@ -1,0 +1,27 @@
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        priority_queue<pair<int,ListNode*>,vector<pair<int,ListNode*>>,greater<pair<int,ListNode*>>>pq;
+        if(list1!=NULL)
+        {
+        pq.push(make_pair(list1->val,list1));
+        }
+        if(list2!=NULL)
+        {
+         pq.push(make_pair(list2->val,list2));
+        }
+         ListNode* ptr=new ListNode(-1);
+      ListNode* temp=ptr;
+      while(!pq.empty())
+      {
+          int data=pq.top().first;
+          ListNode* node=pq.top().second;
+          pq.pop();
+          if(node->next)
+          {
+              pq.push(make_pair(node->next->val,node->next));
+          }
+          temp->next=node;
+          temp=node;
+      }
+      return ptr->next;
+
+    }
