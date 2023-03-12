@@ -1,0 +1,19 @@
+if(!head || !head -> next || !(head -> next -> next)) return head;
+        ListNode *odd = head, *even = head -> next;
+        ListNode *oddPtr = odd, *evenPtr = even;
+        head = head -> next -> next;
+        int cnt = 1;
+        while(head) {
+            if(cnt & 1) {
+                oddPtr -> next = head;
+                oddPtr = head;
+            }else {
+                evenPtr -> next = head;
+                evenPtr = head;
+            }
+            head = head -> next;
+            cnt++;
+        }
+        oddPtr -> next = even;
+        evenPtr -> next = nullptr;
+        return odd;
